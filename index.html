@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#07142f"
+    >
+
+    <title>
+        PopDev Attendance Tracker
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     LOGIN SCREEN
+     ========================================= -->
+
+<div
+    id="loginScreen"
+    class="login-screen"
+>
+
+    <div class="login-card">
+
+
+        <!-- LOGOS -->
+
+        <div class="logo-container">
+
+            <img
+                src="popdev-logo.jpg"
+                alt="PopDev Organization Logo"
+            >
+
+            <img
+                src="school-logo.jpg"
+                alt="Lumbia National High School Logo"
+            >
+
+        </div>
+
+
+        <!-- DEPARTMENT -->
+
+        <p class="department">
+            DEPARTMENT OF EDUCATION
+        </p>
+
+
+        <!-- TITLE -->
+
+        <h1>
+            PopDev Attendance Tracker
+        </h1>
+
+
+        <p class="school-name">
+            Lumbia National High School
+        </p>
+
+
+        <p class="login-subtitle">
+            Population Development Organization
+        </p>
+
+
+        <!-- LOGIN FORM -->
+
+        <div class="login-form">
+
+            <label for="passwordInput">
+                Enter Password
+            </label>
+
+
+            <div class="password-wrapper">
+
+                <input
+                    type="password"
+                    id="passwordInput"
+                    placeholder="Enter your password"
+                    autocomplete="off"
+                >
+
+
+                <button
+                    type="button"
+                    id="togglePassword"
+                    aria-label="Show or hide password"
+                >
+                    👁
+                </button>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="loginButton"
+                class="primary-button"
+            >
+                Unlock Tracker
+            </button>
+
+
+            <p
+                id="loginMessage"
+                class="login-message"
+            ></p>
+
+        </div>
+
+
+        <p class="login-note">
+            Authorized PopDev leaders only.
+        </p>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     MAIN APPLICATION
+     ========================================= -->
+
+<div
+    id="app"
+    class="hidden"
+>
+
+
+    <!-- =====================================
+         HEADER
+         ===================================== -->
+
+    <header class="main-header">
+
+
+        <div class="header-logos">
+
+            <img
+                src="popdev-logo.jpg"
+                alt="PopDev Logo"
+            >
+
+            <img
+                src="school-logo.jpg"
+                alt="Lumbia National High School Logo"
+            >
+
+        </div>
+
+
+        <div class="header-title">
+
+            <p class="header-department">
+                DEPARTMENT OF EDUCATION
+            </p>
+
+            <h1>
+                PopDev Attendance Tracker
+            </h1>
+
+            <p>
+                Lumbia National High School
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="logoutButton"
+            class="logout-button"
+        >
+            Logout
+        </button>
+
+    </header>
+
+
+
+    <!-- =====================================
+         NAVIGATION
+         ===================================== -->
+
+    <nav class="navigation">
+
+
+        <button
+            type="button"
+            class="nav-button active"
+            data-section="monitoring"
+        >
+            📋 Monitoring
+        </button>
+
+
+        <button
+            type="button"
+            class="nav-button"
+            data-section="weeks"
+        >
+            📅 Weeks
+        </button>
+
+
+        <button
+            type="button"
+            class="nav-button"
+            data-section="summary"
+            id="summaryNavButton"
+        >
+            📊 Summary
+        </button>
+
+    </nav>
+
+
+
+    <!-- =====================================
+         MAIN CONTENT
+         ===================================== -->
+
+    <main class="main-content">
+
+
+
+        <!-- =================================
+             MONITORING SECTION
+             ================================= -->
+
+        <section
+            id="monitoringSection"
+            class="content-section active-section"
+        >
+
+
+            <div class="page-heading">
+
+                <div>
+
+                    <p class="small-label">
+                        DAILY MONITORING
+                    </p>
+
+                    <h2>
+                        Attendance Monitoring
+                    </h2>
+
+                    <p>
+                        Check the members who are present
+                        for their assigned area.
+                    </p>
+
+                </div>
+
+
+                <div class="date-display">
+
+                    <span>
+                        TODAY
+                    </span>
+
+                    <strong id="todayDate">
+                        Loading...
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- AREA CARDS -->
+
+            <div class="area-grid">
+
+
+                <button
+                    type="button"
+                    class="area-card selected"
+                    data-area="principal"
+                >
+
+                    <div class="area-icon">
+                        🏫
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Principal's Office → SNED
+                        </h3>
+
+                        <p>
+                            Leader: Princess Elsie
+                        </p>
+
+                    </div>
+
+                    <span class="arrow">
+                        ›
+                    </span>
+
+                </button>
+
+
+
+                <button
+                    type="button"
+                    class="area-card"
+                    data-area="ground"
+                >
+
+                    <div class="area-icon">
+                        🌳
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Ground Floor Area
+                        </h3>
+
+                        <p>
+                            Leader: Ericalyn Pagente
+                        </p>
+
+                    </div>
+
+                    <span class="arrow">
+                        ›
+                    </span>
+
+                </button>
+
+
+
+                <button
+                    type="button"
+                    class="area-card"
+                    data-area="building13"
+                >
+
+                    <div class="area-icon">
+                        🏢
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Building 13 Area
+                        </h3>
+
+                        <p>
+                            Leader: Shubie Gulbin
+                        </p>
+
+                    </div>
+
+                    <span class="arrow">
+                        ›
+                    </span>
+
+                </button>
+
+
+
+                <button
+                    type="button"
+                    class="area-card"
+                    data-area="building14"
+                >
+
+                    <div class="area-icon">
+                        🏢
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Building 14 Area
+                        </h3>
+
+                        <p>
+                            Leader: Kate Sumaylo
+                        </p>
+
+                    </div>
+
+                    <span class="arrow">
+                        ›
+                    </span>
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ATTENDANCE TABLE -->
+
+            <div class="table-card">
+
+
+                <div class="table-header">
+
+                    <div>
+
+                        <h2 id="selectedAreaTitle">
+                            Principal's Office → SNED Area
+                        </h2>
+
+                        <p id="selectedAreaLeader">
+                            Leader: Princess Elsie
+                        </p>
+
+                    </div>
+
+
+                    <div class="week-controls">
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            id="previousWeek"
+                        >
+                            ← Previous
+                        </button>
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            id="nextWeek"
+                        >
+                            Next →
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="table-header">
+
+                    <div>
+
+                        <p
+                            id="currentWeekLabel"
+                            style="
+                                font-weight: 700;
+                                color: #16803c;
+                            "
+                        >
+                            Loading week...
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="table-scroll">
+
+                    <table class="attendance-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    #
+                                </th>
+
+                                <th>
+                                    MEMBER
+                                </th>
+
+                                <th>
+                                    DAY 1
+                                    <small>
+                                        Loading...
+                                    </small>
+                                </th>
+
+                                <th>
+                                    DAY 2
+                                    <small>
+                                        Loading...
+                                    </small>
+                                </th>
+
+                                <th>
+                                    DAY 3
+                                    <small>
+                                        Loading...
+                                    </small>
+                                </th>
+
+                                <th>
+                                    DAY 4
+                                    <small>
+                                        Loading...
+                                    </small>
+                                </th>
+
+                                <th>
+                                    DAY 5
+                                    <small>
+                                        Loading...
+                                    </small>
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            id="attendanceTableBody"
+                        >
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- REMARKS -->
+
+            <div class="remarks-card">
+
+                <h3>
+                    Daily / Weekly Remarks
+                </h3>
+
+                <p>
+                    Add an explanation or important
+                    note about the monitoring.
+                </p>
+
+
+                <textarea
+                    id="remarksInput"
+                    placeholder="Write your remarks here..."
+                ></textarea>
+
+
+                <button
+                    type="button"
+                    id="saveRemarks"
+                    class="primary-button"
+                >
+                    Save Remarks
+                </button>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             WEEKS SECTION
+             ================================= -->
+
+        <section
+            id="weeksSection"
+            class="content-section"
+        >
+
+            <div class="page-heading">
+
+                <div>
+
+                    <p class="small-label">
+                        MONITORING PERIOD
+                    </p>
+
+                    <h2>
+                        Attendance Weeks
+                    </h2>
+
+                    <p>
+                        August 10, 2026 – August 10, 2027
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="weeksContainer"
+                class="weeks-container"
+            >
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             SUMMARY SECTION
+             ================================= -->
+
+        <section
+            id="summarySection"
+            class="content-section"
+        >
+
+            <div class="page-heading">
+
+                <div>
+
+                    <p class="small-label">
+                        PRESIDENT'S DASHBOARD
+                    </p>
+
+                    <h2>
+                        Attendance Summary
+                    </h2>
+
+                    <p>
+                        Overview of PopDev attendance
+                        records.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="summary-grid">
+
+
+                <div class="summary-card">
+
+                    <span>
+                        👥
+                    </span>
+
+                    <p>
+                        Total Members
+                    </p>
+
+                    <strong id="totalMembers">
+                        0
+                    </strong>
+
+                </div>
+
+
+
+                <div class="summary-card">
+
+                    <span>
+                        ✅
+                    </span>
+
+                    <p>
+                        Present
+                    </p>
+
+                    <strong id="totalPresent">
+                        0
+                    </strong>
+
+                </div>
+
+
+
+                <div class="summary-card">
+
+                    <span>
+                        ⭕
+                    </span>
+
+                    <p>
+                        Unchecked / Absent
+                    </p>
+
+                    <strong id="totalAbsent">
+                        0
+                    </strong>
+
+                </div>
+
+
+
+                <div class="summary-card">
+
+                    <span>
+                        📈
+                    </span>
+
+                    <p>
+                        Attendance Rate
+                    </p>
+
+                    <strong id="attendanceRate">
+                        0%
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="summary-area-container">
+
+                <h3>
+                    Area Attendance
+                </h3>
+
+
+                <div id="areaSummaries">
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================
+         FOOTER
+         ===================================== -->
+
+    <footer class="main-footer">
+
+        <div class="footer-logos">
+
+            <img
+                src="popdev-logo.jpg"
+                alt="PopDev"
+            >
+
+            <img
+                src="school-logo.jpg"
+                alt="Lumbia National High School"
+            >
+
+        </div>
+
+
+        <p>
+            PopDev Attendance Tracker
+        </p>
+
+        <small>
+            Population Development Organization
+            • Lumbia National High School
+        </small>
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- =========================================
+     JAVASCRIPT
+     =========================================
+
+     IMPORTANT:
+     "defer" makes the browser wait until the
+     HTML has loaded before running script.js.
+     ========================================= -->
+
+<script
+    src="script.js"
+    defer
+></script>
+
+
+</body>
+
+  </html>
